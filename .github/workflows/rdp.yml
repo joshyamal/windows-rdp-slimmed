@@ -21,12 +21,13 @@ jobs:
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Sudo@1234" -Force)
+    - name: Create Tunnel
+      run: .\ngrok\ngrok.exe tcp 3389
+      
     - run: git clone https://github.com/Sycnex/Windows10Debloater.git C:\Users\runneradmin\Windows10Debloater
     - run: cd C:\Users\runneradmin\Windows10Debloater
     - name: Debloat step 1
-      run: C:\Users\runneradmin\Windows10Debloater\Windows10Debloater.ps1 -Sysprep -Debloat -Privacy 
+      run: C:\Users\runneradmin\Windows10Debloater\Windows10SysPrepDebloater.ps1 -Sysprep -Debloat -Privacy 
       shell: powershell
-    - name: Create Tunnel
-      run: .\ngrok\ngrok.exe tcp 3389
       
     
