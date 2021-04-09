@@ -21,7 +21,7 @@ jobs:
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Sudo@1234" -Force)
-    - run: git clone https://github.com/sarthakroy2002/Windows10Debloater.git C:\Users\runneradmin\Windows10Debloater
+    - run: git clone https://github.com/Sycnex/Windows10Debloater.git C:\Users\runneradmin\Windows10Debloater
     - run: cd C:\Users\runneradmin\Windows10Debloater
     - name: Debloat step 1
       run: C:\Users\runneradmin\Windows10Debloater\Windows10SysPrepDebloater.ps1 -Debloat 
